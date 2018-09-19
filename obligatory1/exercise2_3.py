@@ -8,22 +8,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-#declaring variables
+#\\\\\\\declaring variables\\\\\\
 M = 10**4; N = 60
-#initiating array
+#\\\\initiating array\\\\
 Nu = np.zeros(M)
-#number of spin-up states
+
+#\\\\\\\\\\number of spin-up states\\\\\\\\\
 for i in range(M):
     Nu[i] = np.sum(np.random.randint(2, size=N))
-#Total spin, N_dwn = N - N_up
+#\\\\\\Total spin, N_dwn = N - N_up\\\\\\\\
 S = 2*Nu - N
+
 #extracting expectation value and standard deviation
 (mu, sigma) = norm.fit(S)
-#histogram and plots
+#\\\\\\\\\\\histogram and plots\\\\\\\\\\\\
 n, bins, patches = plt.hist(S, N-1, density=True)
-G = norm.pdf(bins, mu, sigma)
+G = norm.pdf(bins, mu, sigma)*2 # *2 compensates from void between bins
 l = plt.plot(bins, G)
 plt.xlabel('total sum of spins')
 plt.ylabel('number of microstates')
 plt.title('distribution of total energy for N=60 paramgnet system')
+plt.show()
+
+plt.figure()
+plt.plot(bins[:-1]+0.5, np.log(n), 'o')
+plt.xlabel('total sum of spins')
+plt.ylabel('Boltzman entropy S/k')
+plt.title('Entropy of total energy for N=60 paramgnet system')
 plt.show()

@@ -1,0 +1,452 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2.2cm, bottom=1.8cm, left=2.8cm, right=2.3cm]{geometry}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{caption}
+\usepackage{subfigure}% subpics
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}% Booksmarks hyperref
+\usepackage{bookmark}% Booksmarks 
+\usepackage{float} % placing figugre in HERE \begin{table}[H] OR \begin{figure}[H]
+\usepackage{booktabs} % table
+\usepackage{verbatim} % to have comment in paragraph\\
+\usepackage{multirow}
+\bibliographystyle{plain}
+
+
+\usepackage{listings}
+
+
+\begin{document}
+	
+	
+\title{FYS2160 Assignment 01}
+\author{Emily}
+\date{\today}
+
+
+\maketitle
+
+% \tableofcontents
+\section{1 First law of thermodynamics}
+\subsection[1.1]{Calculate the internal energy of the diatomic ideal gas at a given temperature T. What is its heat capacity at constant volume?}
+
+According to the condition we know, the given temperature can determine the degree of the freedom f. In our case, only the translational and rotational degrees of freedom are excited. so diatomic ideal gas has degree of freedom for transition is 3 and for rotation is 2. The degree of freedom is then $f = 5$. Therefore, the internal energy of the diatomic ideal gas is:
+
+\begin{align*}
+U = \frac{f}{2}NkT = \frac{5}{2}NkT 
+\end{align*}
+
+where N is the particle number,  and k is Boltzmann constant. Furthermore, T is temperature in Kevin.
+ 
+From the definition of the heat capacity at the constant volume, it gives that :
+\begin{align*}
+C = \frac{dQ}{dT}|_V = \frac{dU}{dT}
+=  \frac{d}{dT}\frac{5}{2}NkT 
+= \frac{5}{2}Nk
+\end{align*}
+
+\begin{comment}
+The ideal gas states that  $PV = NkT$,  it can derive that 
+\end{comment}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{problem_01_PV_graph}
+	\caption{P-V graph for Problem 1}
+	\label{fig:problem01pvgraph}
+\end{figure}
+
+\subsection[1.2]{What is the change in the internal energy $\Delta U$ along each step and for the cyclic process?}
+
+
+\quad \quad From the ideal gas law, we have 
+\begin{align*}
+NKT = PV
+\end{align*}
+
+Therefor, the thermal energy of the gas is :
+\begin{align*}
+U = \frac{5}{2}NkT = \frac{5}{2}PV
+\end{align*}
+
+I denote $\Delta V = (V_2 -V_1)$ and $\Delta P = (P_2 -P_1)$  in here.
+
+
+\subsubsection{path A}
+For the path A, the volume changes from large value $V_2$ to small value $V_1$.
+
+\begin{align*}
+\Delta  U_A & = \frac{5}{2}P_2(V_1-V_2) = \frac{5}{2}P_2V_1-\frac{5}{2}P_2V_2 \\
+& =  -\frac{5}{2}P_2\Delta V <0
+\end{align*}
+
+
+\subsubsection{path B}
+For the path B, the pressure changes from the higher $P_2$ to lower $P_1$, and the volume keeps constant. It means the work of the system is zero. 
+
+\begin{align*}
+\Delta U_B & = \frac{5}{2}(P_1-P_2)V_1 
+=  \frac{5}{2}P_1V_1-\frac{5}{2}P_2V_1 
+\\
+& = -\frac{5}{2}\Delta PV_1 <0
+\end{align*}
+
+
+
+\subsubsection{path C}
+For the path C, the volume changes from small $V_1$ to large  $V_2$, and it is expansion process. Moreover, the pressure increases from lower $P_1$ to higher $P_2$.
+
+\begin{align*}
+\Delta U_C & = \frac{5}{2}P_2V_2 -\frac{5}{2}P_1V_1
+\\
+& = \frac{5}{2} (P_2V_2 - P_1V_1 ) >0
+\end{align*}
+
+
+
+\subsection[1.3]{Compute the work done W by the gas along each path.}
+
+In our system here, the work can be calculate as :
+$$
+W = \int_{V_{initial}}^{V_{final}} P(V)dV
+$$
+I denote $\Delta V = (V_2 -V_1)$ and $\Delta P = (P_2 -P_1)$  in here.
+
+\subsubsection{path A}
+$$
+W_A = \int_{V_2}^{V_1} P_2 dV = -\int_{V_1}^{V_2} P_2 dV = -P_2(V_2 -V_1) = -P_2 \Delta V < 0
+$$
+It can see that $W_A < 0 $ , so it can verifies the gas is in  compression process. 
+
+\subsubsection{path B}
+$$
+W_B = 0
+$$
+
+\subsubsection{path C}
+\begin{align*}
+W_C & = \int_{V_1}^{V_2} P(T) dV = P_2 \Delta V -\frac{1}{2} \Delta P\Delta V\\
+& =  P_2 \Delta V -\frac{1}{2}(P_2- P_1)\Delta V
+\\
+& = P_1 \Delta V  + \frac{1}{2} \Delta P\Delta V > 0
+\end{align*}
+
+
+
+\subsection[1.4]{Compute the heat exchange Q along each path.}
+
+According to the first of thermodynamic law, the exchange of the energy is the sum of the heat and the work done, i.e:
+$$
+\Delta U = W + Q
+$$
+
+
+The heat of the system can be computed from the change of the thermo energy U and the work W. So the heat exchange Q is:
+$$
+Q = \Delta U- W 
+$$
+
+\subsubsection{path A}
+\begin{align*}
+Q_A & = \Delta U_A- W_A=  - \frac{5}{2}P_2\Delta V   - (- P_2 \Delta V)
+\\
+& = - \frac{3}{2}P_2\Delta V < 0
+\end{align*}
+
+\subsubsection{path B}
+\begin{align*}
+Q_B & = \Delta U_B- W_B=  -\frac{5}{2}\Delta PV_1  - 0
+\\
+& = -\frac{5}{2}\Delta PV_1  < 0
+\end{align*}
+
+
+\subsubsection{path C}
+
+\begin{align*}
+Q_C & = \Delta U_C- W_C=  \frac{5}{2} (P_2V_2 - P_1V_1 )  - (P_1 \Delta V  + \frac{1}{2} \Delta P\Delta V)
+\\
+& = \frac{5}{2}P_2V_2 -\frac{5}{2}P_1V_1 - P_1V_2 + P_1V_1 - \frac{1}{2}(P_2V_2 -P_1V_2 - P_2V_1+ P_1V_1)
+\\
+& = 2P_2V_2  -\frac{1}{2}P_1V_2 -2P_1V_1 + \frac{1}{2}P_2V_1
+\\
+& = (2P_2 - \frac{1}{2}P_1)V_2 + (\frac{1}{2}P_2 -2P_1)V_1    >0
+\end{align*}
+
+
+
+\subsection[1.5]{}
+
+\subsubsection{$\Delta U$, W and Q for the whole cycle}
+
+The total thermal energy is :
+\begin{align*}
+\Delta U & = \Delta U_A + \Delta U_B + \Delta U_C
+\\
+& = (\frac{5}{2}P_2V_1-\frac{5}{2}P_2V_2 ) + (\frac{5}{2}P_1V_1-\frac{5}{2}P_2V_1 )
++ (\frac{5}{2}P_2V_2 -\frac{5}{2}P_1V_1)
+\\
+& = 0
+\end{align*}
+
+The total thermal change is 0 , because the gas is back in its intial state.
+
+
+The total work W is:
+\begin{align*}
+W & = W_A + W_B + W_B\\
+& = -P_2\Delta V + 0 + P_1\Delta V  + \frac{1}{2} \Delta P\Delta V\\
+& = (P_1 -P_2) \Delta V + \frac{1}{2} \Delta P\Delta V
+= -\Delta P\Delta V + \frac{1}{2} \Delta P\Delta V\\
+& = -\frac{1}{2}\Delta P\Delta V <0
+\end{align*}
+
+The total work is the area of the triangle.
+
+The total heat Q is :
+\begin{align*}
+Q & = Q_A + Q_B + Q_C\\
+& =   - \frac{3}{2}P_2(V_2-V_1) + ( \frac{5}{2}P_1V_1-\frac{5}{2}P_2V_1 )+ ( 2P_2V_2  -\frac{1}{2}P_1V_2 -2P_1V_1 + \frac{1}{2}P_2V_1)\\
+& =-\frac{1}{2}P_2V_1 + \frac{1}{2}P_2V_2  + \frac{1}{2}P_1V_1 -\frac{1}{2}P_1V_2\\
+& = \frac{1}{2} P_2 \Delta V - \frac{1}{2} P_1 \Delta V\\
+& = \frac{1}{2} \Delta P\Delta V >0
+\end{align*}
+
+Total heat Q is positive, then it means a net amount of heat is absorbed by the process.
+
+
+\subsubsection{Describe what the gas does in each of the steps, when does it absorb or emit heat, when it does work and what does this cycle of energy transformation accomplish.}
+
+\paragraph{path A}
+
+For the path A , The gas does the negative work since $W_A <0 $, and it is copression process. The heat $Q_A$ is negative, so it emit heat during the process. 
+
+
+\paragraph{path B}
+
+For the path B , there is no work done since $W_B = 0$. The heat $Q_B$ is also negative, so it emit heat during the process. 
+
+\paragraph{path C}
+For the path C , The gas does the positive work since $W_C > 0$, and it is expansion process. The heat $Q_C > 0 $, so the heat is absorbed during the process, it means heat flows into the system.
+
+h\paragraph{the cycle of energy transformation}
+The total new thermal energy is zero, i.e $\Delta U = 0$, since the gas is back to the initial state of the process. Since $Q = -W >0  $, the overall processes convert the heat to the total work done on the gas.
+
+
+
+\section{2 Multiplicity and Boltzmann's entropy in a paramagnet}
+
+
+\subsection[2.1]{How many microstates are there in a system of N-spins?}
+
+The total number of the mictrostate of the N-spins system  is:
+\begin{align*}
+\Omega (n) = 2^N
+\end{align*}
+
+
+\subsection[2.2]{Find an expression of the total net spin, S, for the N-spins system.}
+The net spin can be calculated as sum all the spins for the N-spins system ,i.e:
+\begin{align*}
+S & = \sum_{i= 1}^{N} s_i 
+= \sum_{i= 1}^{K} (+1) + \sum_{i= 1}^{J} (-1) \\
+& =\sum_{i= 1}^{K} (+1) - \sum_{i= 1}^{J} (+1) = K-J\\
+& = N_+ -N_-
+\end{align*}
+
+We let $N_+$ up-spins to be sum of the (+1), i.e $ N_+ =K$, and let $N_-$ down-spins to be sum of the i.e $ N_- = J$.
+
+
+\subsection[2.3]{assuming that all microstates are equally likely - and plot the spin S of the system for each of the microstate. Plot a histogram of the net spins using for example hist in matlab and compare it with the Gaussian distribution.}
+
+In this task, I generate the random number in a matrix  $M \times N$. Each row of the matrix is from binomial distribution for n = 60 and p = 0.5.  Figure \ref{fig:exercise203} shows the histogram of the net spin and Gaussian distribution in red curve. In my simulation, the mean of the normal distribution is $\mu = 0.014 $, and the standard derivate is $\sigma = 7.773303$.  The program code see appendix.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{exercise_2_03}
+	\caption{histogram of the net spins with normal distribution curve of the multiplicity}
+	\label{fig:exercise203}
+\end{figure}
+
+\subsection[2.4]{}
+From the task 2.3, we obtained that$S = N_+ - N_-$. The total spin number is $N= N_+ + N_-$.
+\begin{align*}
+\begin{cases}
+N = N_+ + N_- \\
+S = N_+ - N_-
+\end{cases}
+\Rightarrow
+ \begin{cases} 
+N_+ = \frac{N + S}{2}\\
+N_- = \frac{N - S}{2}
+\end{cases}
+\end{align*}
+
+The multiplicity of a macrostate $\Omega(N, N_-)$ is 
+\begin{align*}
+\Omega(N, N_+) & = \binom{N}{N_+}= \frac{N!}{N_+!(N-N_+)!}
+\\
+& = \frac{N!}{N_+!(N-N_+)!} 
+= \frac{N!}{N_+!N_-!} 
+\\
+& = \frac{N!}{(\frac{N + S}{2})!(\frac{N - S}{2})!} 
+\end{align*}
+
+The multiplicity of a macrostate can be rewritten in the term of N and S as:
+\begin{align*}
+\Omega(N, S) 
+& = \frac{N!}{(\frac{N + S}{2})!(\frac{N - S}{2})!} 
+\end{align*}
+
+
+
+
+
+
+\subsection[2.5]{Using Stirling’s approximation, show that the multiplicity function $\Omega(N, S)$ can be written	When is $$\Omega(N,S) = \Omega_{max}\exp(-S^2/2	N)$$this formula valid? What is the maximum of the multiplicity  $\Omega(N, S)$?}
+
+
+\subsubsection{the maximum of the multiplicity $\Omega(N, S)$}
+
+For the maximum case , we expect S = 0.
+\begin{align*}
+& \Omega(N,S) = \frac{N!}{(\frac{N+S }{2})!(\frac{N-S}{2})!} 
+\\
+& N! \approx N^N \exp(-N) \sqrt{2\pi N} \quad  \text{the Stirling’s approximation }
+\end{align*}
+We know at S = 0, the multiplicity reaches the maximum value. 
+\begin{align*}
+& \Omega_{max}(N,S) 
+= \frac{N!}{(\frac{N }{2})!(\frac{N}{2})!} 
+\\
+& \approx \frac{ N^N \exp(-N) \sqrt{2\pi N} }{(\frac{N}{2}^{\frac{N}{2}} \exp(-\frac{N}{2}) \sqrt{2\pi  \frac{N}{2}})^2}
+\\
+& =  \frac{ N^N \exp(-N) \sqrt{2\pi N} }{\frac{N}{2}^{N} \exp(-N) \pi N}
+ = \frac{2^N \sqrt{2} }{\sqrt{\pi N}}
+\\
+& = \frac{2^N \sqrt{2}  \sqrt{2}}{\sqrt{\pi N} \sqrt{2}}\\
+& = \frac{2^{N+1} }{\sqrt{2 \pi N}}
+= 2^N \sqrt{\frac{2}{\pi N}}
+\end{align*}
+
+
+As N increases infinity large , we can see the term $\frac{2}{\pi N}$ tend to be 0. So the maximum multiplicity can be approximated as $\Omega_{max}(N,S) \approx 2^N $.
+
+
+
+\subsubsection{derive approximation of $\Omega(N, S)$}
+
+For $\frac{S}{2} << N$
+
+\begin{align*}
+&  \ln \Omega(N, S)  
+= \ln(\frac{N!}{(\frac{N + S}{2})!(\frac{N - S}{2})!} )
+\\
+& = N\ln(N) -\frac{N + S}{2}\ln(\frac{N + S}{2}) -\frac{N - S}{2}\ln(\frac{N - S}{2})\\
+& = N\ln(N) -\frac{N + S}{2}\ln(\frac{N}{2}) - \frac{N + S}{2}\ln(1+ \frac{2}{N}\frac{S}{2})-\frac{N - S}{2}\ln(\frac{N}{2}) -\frac{N - S}{2}\ln(1- \frac{2}{N}\frac{S}{2})
+\\
+& \approx  N\ln(N) - N\ln(\frac{N}{2})-  \frac{N + S}{2} ( \frac{S}{N}- \frac{1}{2}(\frac{S}{N})^2)  -\frac{N - S}{2} (-\frac{S}{N} +  \frac{1}{2}(\frac{S}{N})^2)
+\\
+& =  N\ln(2)- \frac{2}{N}(\frac{S}{2})^2 + \frac{N}{2}\frac{2(S/2)^2}{N^2} - \frac{2}{N}(\frac{S}{2})^2 + \frac{N}{2}\frac{2(S/2)^2}{N^2}
+\\
+& =  N\ln(2) - \frac{2}{N}(\frac{S}{2})^2
+\\
+&=  N\ln(2) - \frac{S^2}{2N}
+\end{align*}
+
+
+In here, we use the Taylor's expansion to approximate the logarithm value, i.e:
+$$
+\ln(1+ \frac{S}{N})
+\approx  \frac{S}{N}- \frac{1}{2}(\frac{S}{N})^2
+$$
+$$
+\ln(1- \frac{S}{N})
+\approx  -\frac{S}{N} +  \frac{1}{2}(\frac{S}{N})^2
+$$
+
+ 
+\begin{align*}
+\Rightarrow
+\Omega (N,S) = 2^N \exp( - \frac{S^2}{2N})
+\end{align*}
+
+
+
+\subsubsection{When is this formula valid?}
+
+As the system is at equilibrium state, then  multiplicities have the maximum value.  It means that the temperature keeps constant for the system.
+
+
+\subsection[2.6]{Compare your analytical result with the histogram you generated of the microstates and comment on the results.}
+
+From the analytical result, we can see the multiplicity tend to be Gaussian distribution as N approach infinity large. In the simulation, the result shows also the multiplicity is tend to be Gaussian distribution. 
+
+\subsection[2.7]{Using Boltzmann's formula $S_B = k \ln \Omega$, find the entropy as a function of N and the net spin S and plot it numerically for $N = 60$ spins.}
+
+\subsubsection{the entropy S function}
+\begin{align*}
+S_B
+&  = k\ln \Omega(N, S)
+\\  
+& = k[N\ln(N) -\frac{N + S}{2}\ln(\frac{N + S}{2}) -\frac{N - S}{2}\ln(\frac{N - S}{2}) ]
+\end{align*}
+
+
+If we use the approximation , then entropy become then :
+\begin{align*}
+S_B
+\approx k( N\ln(2) - \frac{S^2}{2N})
+\end{align*}
+
+
+\subsubsection{plot S numerically for $N = 60$ spins}
+
+In here, I generate the multiplicity from the statistic of the net spin number. The Figure \ref{fig:exercise_2_07_S_b_divide_k} shows the entropy graph of the system. Since the Boltzmann constant k is extreme small compare with multiplicity $\Omega$, then I use $S_B/k$ as y-axis to avoid the numerical error.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{exercise_2_07_S_b_divide_k}
+	\caption{plot of entropy $S_B /K$ numerically for $N = 60$ spins}
+	\label{fig:exercise_2_07_S_b_divide_k}
+\end{figure}
+
+The Figure \ref{fig:exercise207withoutlog} shows the multiplicity for $N = 60$ spins. It can see the figure,  the curve tend to be  bell shape and tend to be Gaussian curve. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{exercise_2_07_without_log}
+	\caption{plot of entropy $\Omega$ numerically for $N = 60$ spins}
+	\label{fig:exercise207withoutlog}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Appendix Program code}
+\subsection{2.3}
+\lstinputlisting{ex_2_3.R}
+
+
+\end{document}
