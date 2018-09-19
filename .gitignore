@@ -1,0 +1,16 @@
+
+
+
+
+*.png
+*.jpg
+*.pdf
+
+
+*.aux 
+*.dvi 
+*.log 
+*.pdf
+
+# excluding Emily's texreport aid
+EMILYTEX.tex
