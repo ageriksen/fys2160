@@ -1,0 +1,34 @@
+> python3 
+Python 3.6.6 (default, Sep 12 2018, 18:26:19) 
+[GCC 8.0.1 20180414 (experimental) [trunk revision 259383]] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> r= (1.114 + 1.073)/2
+>>> r
+1.0935000000000001
+>>> import math
+>>> T = 25 - 24*math.ln(r)
+tTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'math' has no attribute 'ln'
+>>> t
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 't' is not defined
+>>> t
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 't' is not defined
+>>> T
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'T' is not defined
+>>> T = 25 - 24*math.ln(r)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'math' has no attribute 'ln'
+>>> T = 25 - 24*math.log(r)
+>>> T
+22.854794532767546
+>>> C0 = math.sqrt( (7.0/5.0)*( 8.13/0.04401 ) * (22.85 + 273.15) )
+>>> C0
+276.6810797733866
