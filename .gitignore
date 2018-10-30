@@ -11,6 +11,10 @@
 *.dvi 
 *.log 
 *.pdf
+*.db 
+*.bbl 
+*.blg 
+*.fls 
 
 # excluding Emily's texreport aid
 EMILYTEX.tex
