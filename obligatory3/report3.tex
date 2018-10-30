@@ -50,9 +50,9 @@ not for heat. With the assumption of a quasi static change, the temperature will
 We also assume that the amount of gas we are looking at is unchanging. Thus, $dN=0$ as well. What remains of our identity, is
 \begin{align*}
     dF|_{T,N} = - PdV \quad &\rightarrow \quad P = -\dv{F}{V}|_{T,N} \\
-    \dv{V}\qty( -NkT\ln( V - Nb) - aN^2\frac{1}{V} ) &\rightarrow -\qty( -\frac{NkT}{V - Nb} + aN^2\frac{1}{V} ) = P \\
+    \dv{V}\qty( -NkT\ln( V - Nb) - aN^2\frac{1}{V} ) &\rightarrow -\qty( -\frac{NkT}{V - Nb} + aN^2\frac{1}{V^2} ) = P \\
 \end{align*}
-\[ P( V, T, N ) =  \frac{NkT}{V - Nb} - aN^2\frac{1}{V} \]\\
+\[ P( V, T, N ) =  \frac{NkT}{V - Nb} - aN^2\frac{1}{V^2} \]\\
 
 
 %%%%%%%%%%
@@ -64,25 +64,54 @@ One mole van der Waals gas undergoes reversible isothermal compression from volu
 
 \subsubsection{}
 For a gass, the work done is
-\[ W = -\int_{V_2}^{V_1} dV P \]
+\[ W = - \int_{V_2}^{V_1} dV P \]
 where the negative is a result of work being done on the gas to compress it. 
 \[ W = \int_{v_2}^{V_1} dV \dv{F}{V}|_{T,N} \]
  which is F from initial to finalvalues, excluding T and N dependencies and solves to
-\[ - \qty( NkT\ln( V - Nb) - aN^2\frac{1}{V} )_{V_2}^{V_1} \]
-\[ \qty( NkT\ln(\frac{V_2 - Nb}{V_1 - Nb}) - aN^2\qty(\frac{1}{V_2} - \frac{1}{V_1} ) ) \]
+\[ - \qty( NkT\ln( V - Nb) - aN^2\frac{1}{V^2} )_{V_2}^{V_1} \]
+\[ \qty( NkT\ln(\frac{V_2 - Nb}{V_1 - Nb}) - aN^2\qty(\frac{1}{V_2^2} - \frac{1}{V_1^2} ) ) \]
 
 
 \subsection{ Apply van der Waals gas to nitrogen ($N_2$). Critical parameters $P_c = 33.6atm$, 
             $V_c = 0.089\frac{l}{mol}$, $T_c = 126 K$. Plot $P - V$ isotherms for $T = 77, 100, 110, 115, 120, 125 K$. }%%%%%%%%%%
 
+\begin{figure}[hbtp]
+\includegraphics[scale=0.75]{E13Isotherm.png}
+\caption{Here we see the isotherms with regards to a van der Waals gas, with dimensionless variables rho, v and t equal to 
+        $\frac{P}{P_c}$, $\frac{V}{V_c}$, $\frac{T}{T_c}$ respectively}
+ \label{isotherm}
+\end{figure}
 
 \subsection{ With construction of Maxwell equal area (as presented during lecture), determine liquid volume $V_l(T)$
             and gas volume $V_g(T)$ for given temperature. Estimate by eye and find approximate position of temperature
             where areas are equal. } % See lecture notes 13 for the area!%%%%%%%%%%
 
+Using the Maxwell equal area, we approximate the areas between a line and the graph, I did this using a line drawn after 
+approximating the equal areas for the relevant curve. 
+
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{c}{ Temperature / K } & \multicolumn{1}{c}{ $V_l$ / atm } & \multicolumn{1}{c}{ $V_g$ / atm } \\
+\hline
+100 &  0.107 &  0.400      \\ % 1.199,  4.497
+110 &  0.096 &  0.262      \\ % 1.077, 2.949
+115 &  0.003 &  0.205      \\ % 0.037, 2.303
+120 &  0.092 &  0.153      \\ % 1.030, 1.715
+125 &  0.089 &  0.108      \\ % 0.998, 1.217
+\hline
+    \label{VlVg}
+\
+\end{tabular}\\
+
+After having read off the varous liquid and gass volumes, we rescaled them with through multiplying with the critical volume given above. The result is 
+the table \ref{VlVg}
 
 \subsection{ Recall areas for a critical temperature. find $T_c$, i.e plot $V_l(T) - V_g(T)$ as a function of T. 
             compare with theoretical temperature. Why do they differ? }%%%%%%%%%%
+
+We Made a small sampled difference between the liquid and gas volumes, before doing a linear fit with scipy's stat.linregress. This gave us 
+$~ V_l - V_g \approx 0.011\cdot T - 1.377$ which means that the critical temperature hits at around $T = 125 K$, which is only $1 K$ off of the theoretical
+value. This is a rather good fit, considering we only made eye measurements and a fit of 5 points.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -93,12 +122,59 @@ equilibrium at room tepmerature T = 300K
 
 \subsection{ Partition function for particle $Z_1$ }%%%%%%%%%%
 
+We know from Schroeder, that the partition function $Z = \sum_i e^{-\beta \epsilon_i}$, where $\beta = \frac{1}{kT}$. 
+We have energies in electron volt eV, and can express the Boltzmann constant as $k = 8.617\cdot 10^{-5} \frac{eV}{K}$.
+This gives us a $\beta = \frac{1}{kT} = \frac{1}{6.617\cdot 3}\cdot 10^{5 - 2} = 38.7 \frac{1}{eV}$
+For 1 particle, we can express the partition function as 
+\[ Z = \sum_i e^{-\beta \epsilon_i} = e^{0.1\beta} + e^{0.05\beta} + 1 + e^{-0.05\beta} + e^{-0.1\beta} = 5.000 \].
+
 
 \subsection{ $\Pr(\epsilon_i)$ for each i. }%%%%%%%%%%
+
+Looking once more to Schroeder, we can find the probability of a state 
+\[ P(\epsilon_i ) = \frac{1}{Z} e^{\beta \epsilon_i} \]
+For the states, this gives \\
+\begin{tabular}{ccc}
+\hline
+    \multicolumn{1}{c}{ $\epsilon_i$ / eV } & \multicolumn{1}{c}{ $P(\epsilon_i )$ } \\
+\hline
+  -0.10     &     0.201    \\ 
+  -0.05     &     0.200    \\ 
+   0.00     &     0.200    \\ 
+   0.05     &     0.200    \\ 
+   0.10     &     0.199    \\ 
+\hline
+    \label{probs}
+\
+\end{tabular}\\
 
 
 \subsection{ The reference point for energies is arbitrary. Reshuffle states so we start at 0. repeat 1. and 2. for
             $\epsilon_i = 0, 0.05, 0.1, 0.15, 0.2$. What will remain and what will change? }%%%%%%%%%%
+We retain our $\beta =  38.7 \frac{1}{eV}$, but the partition function is now
+
+\[ Z = \sum_i e^{-\beta \epsilon_i} = 1 + e^{-0.05\beta} + e^{-0.1\beta} + e^{-0.15\beta} + e^{-0.2\beta} = 4.980 \].
+
+The function for probability remains the same. 
+\[ P(\epsilon_i ) = \frac{1}{Z} e^{\beta \epsilon_i } \]
+
+\begin{tabular}{ccc}
+\hline
+    \multicolumn{1}{c}{ $\epsilon_i$ / eV } & \multicolumn{1}{c}{ $P(\epsilon_i )$ } \\
+\hline
+  -0.10     &      0.200   \\ 
+  -0.05     &      0.200   \\ 
+   0.00     &      0.199   \\ 
+   0.05     &      0.199   \\ 
+   0.10     &      0.199   \\ 
+\hline
+    \label{probs}
+\
+\end{tabular}\\
+
+While we can see that there are some small changes here, I believe these arise from numericali inacuracies in my calculations. 
+When checeking the total probability, I got a difference of $0.003\dots$, with $P1 = 0.999\dots$ and $P2 = 0.996\dots$. If I reduce
+to 2 leading digits, there should be no difference, and both should sum to 1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -133,14 +209,17 @@ as previously, scaling the result by a factor $\sqrt{2}$, leaving us with \under
 
 \subsection{ Plot Maxwell-Boltzmann distribution $D(v)$ for the 2 temperatures. in the same graph }%%%%%%%%%%
 
+To plot the 2 graphs, we made a function to find the distribution values of a set of velocities given a temperature, setting everything else 
+into different constants. After feeding the velocity range and the temperatures into the funciton, we made a normalized copy of the lowest temperature
+distribution for later use. 
 
 \begin{figure}[hbtp]
 \includegraphics[scale=0.75]{E32MBdist.png}
 \caption{Maxwell Boltzmann disrtributions of velocities in the range $0$ to $2\frac{km}{s}$, where the amplitude was scaled as shown,
     in order to avoid numerical inacuracies. We can see that for a similar amount of particles, an increase in energy will shift and widen
     the graph, with the overall velocity increasing as per the kinetic energy, but also that more particles can be found with velocities above
-    and below the most likely.} 
-\label{fig:n10points}
+    and below the most likely.}
+ \label{Maxwell-Boltzmann}
 \end{figure}
 
 
@@ -148,22 +227,41 @@ as previously, scaling the result by a factor $\sqrt{2}$, leaving us with \under
 
 To find the fraction of particles below $300\frac{m}{s}$, we need to take the integral of the distribution function from no velocity, to
 $300$, 
-%\[ \int_0^{300}dv\quad D(v) = \alpha \int_0^{300}dv\quad v^2e^{-\beta v^2} 
-%    \quad \leftarrow \quad \alpha = 4\pi \qty(\frac{m}{2\pi kT})^{3/2} \; \beta = \frac{m}{2kT} \]
 \[ \int_0^{300}dv\quad D(v) =  \int_0^{300}dv\quad \beta v^2e^{-\alpha v^2} 
     \quad \leftarrow \quad \alpha = \frac{ m }{ 2kT } \; , \; \beta = \qty( \frac{ \alpha }{ \pi } )^{3/2} \] 
+This becomes quite hairy, however. As an alternative I normalized the distribution with regards to $300K$ temperature and summed up the 
+contributions up to velocity 300. This resulted in $20.2\%$ of particles having a velocity below $300 \frac{m}{s}$. Looking at 
+figure \ref{Maxwell-Boltzmann}, we can see that the peak of the lowest temperature lies at about $4-500 \frac{m}{s}$. and there is a quick dropoff. 
+The general amount within a standard deviation is $60 - 70\%$, and there is a far slower taper on the higher end of velocities. Thus, of the 
+$30-40\%$ outside of this, it is not untoward to expect half or less to be on the lower velocities. The standard deviation seems to be at about 
+$250\frac{m}{s}$ which is a little below our cutoff. This should pull the probability upwards some, but the majority of velocities will still be above
+this. I therefore believe the estimation to be accurate. 
 
 
-\subsection{ Temperature of Earth's upper atmosphere aroun $T=1kK$. calculate probability of $N_2$ molecule with velocity 
+\subsection{ Temperature of Earth's upper atmosphere around $T=1kK$. calculate probability of $N_2$ molecule with velocity 
             greater than the earth's escape velocity of $11\frac{km}{s}$. Comment. (hint: calculate integral numerically) }%%%%%%%%%%
+
+to calculate the probability of particles reaching escape velocity in the earth's atmosdphere, we made use of the functionality of the code for
+previous exercises, generalizing it to handle the current problem. first generating the distribution at the given temperature and ensuring that the 
+velocities covered go a fair bit beyond the target. Running over the normalized distribution, we check that the velociy is above our target and if so 
+add up the contributions. This reaches up to a ratio of $10^{-88}$. The chance of a particle reaching escape velocity is astronomically small. It doesn't 
+happen very often. 
+
 
 
 \subsection{ repeat 4. for $H_2$ and $He$. Discuss results. ($M_{H_2, mol} = 0.002\frac{kg}{mol}$ and 
             $M_{He, mol} = 0.004\frac{kg}{mol}$)  }%%%%%%%%%%
-
+Using once more the funcitonality of the program, we modify the distribution "constant" called "B" in the program to the relative mass of hydrogen gas and
+Helium atoms with regards to Nitrogen. This allows us to run the same tests and fairly easily extract rates of $10^{6}$ and $10^{-12}$ respectively. These
+two are significantly more likely, but it is still not a high likelihood. About $1$ in every million hydrogen atoms could escape, while only another millionth
+of helium atoms escape. This can be seen in the differing masses, and how much energy can be stored in the motion of these molecules. 
 
 \subsection{ consider the moon. calculate the probability of $N_2$ molecules to reach the moons escape velocity of
             $2.4\frac{km}{s}$. Assume $T=1kK$ as above. Use to explain the moon's lack of atmosphere. }%%%%%%%%%%
+Changing the escape velocity to that of the moon, yet keeping the $N_2$ molecule scaling on the distribution gives a probability of $~10^{-4}$
+to reach the stars. this is, in other words several orders of magnitude easier than even the lightest gasses on earth and roughly $84$ orders of 
+magnitude easier than with $N_2$ on Earth. This means that an atmosphere on the moon would need to be very cool indeed if it was to retain any sort
+of atmosphere. In addition, if you were to harbour dreams of leaping to the stars and have the choise between the Earth and Moon, go for the moon. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
