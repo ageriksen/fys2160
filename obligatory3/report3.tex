@@ -1,0 +1,172 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{physics}
+\usepackage{natbib}
+\usepackage[top=2.2cm, bottom=1.8cm, left=2.8cm, right=2.3cm]{geometry}
+\usepackage[T1]{fontenc} %for å bruke æøå
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} %for å inkludere grafikk
+\usepackage{caption}
+\usepackage{verbatim} %for å inkludere filer med tegn LaTeX ikke liker
+\usepackage{mathpazo}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{hyperref}% Booksmarks hyperref
+\usepackage{bookmark}% Booksmarks 
+\usepackage{float} % placing figugre in HERE \begin{table}[H] OR \begin{figure}[H]
+\usepackage{booktabs} % table
+\usepackage{verbatim} % to have comment in paragraph\\
+\usepackage{multirow}
+\bibliographystyle{plain}
+
+%\begin{figure}[hbtp]
+%\includegraphics[scale=0.4]{test1.pdf}
+%\caption{Exact and numerial solutions for $n=10$ mesh points.} 
+%\label{fig:n10points}
+%\end{figure}
+
+\renewcommand{\thesubsubsection}{\Roman{subsubsection}}
+
+\begin{document}
+	
+\title{FYS2160 obligatory assignment 2}
+\author{Anders Eriksen}
+\maketitle
+
+
+%%%%%%%%%%%  SECTION 1 %%%%%%%%%%%%%
+\section{Van der Waals gas}
+Helmholtz free energy for van der Waals gas given as
+\[ F( T, V, N ) = - N k T \qty( \ln(\frac{  V - Nb  }{ N\Lambda^3 } ) + 1 ) - \frac{ a N^2 }{ V } \]
+\[ \Lambda( T ) = \sqrt{ \frac{ h^2 }{ 2\pi m k T } }  \]
+$\Lambda$ is the thermal wavelength as a pure functio of temperature. 
+
+\subsection{ Derive equation of state for gas, expression for pressure $P( V, T, N )$ as func of 
+            $V, T, N$ from the Helmholtz free energy above. }%%%%%%%%%%
+To find the equation of state for the van der Waal gas, we need to use the thermodynamic identity of the Helmholtz free
+energy, 
+\[ dF = - SdT - PdV + \mu dN \]
+And we know that the Helmholtz free energy is in a system that is isolated with regards to volume and molecular movement, but
+not for heat. With the assumption of a quasi static change, the temperature will never leave that of the thermal bath. Thus, $dT=0$.
+We also assume that the amount of gas we are looking at is unchanging. Thus, $dN=0$ as well. What remains of our identity, is
+\begin{align*}
+    dF|_{T,N} = - PdV \quad &\rightarrow \quad P = -\dv{F}{V}|_{T,N} \\
+    \dv{V}\qty( -NkT\ln( V - Nb) - aN^2\frac{1}{V} ) &\rightarrow -\qty( -\frac{NkT}{V - Nb} + aN^2\frac{1}{V} ) = P \\
+\end{align*}
+\[ P( V, T, N ) =  \frac{NkT}{V - Nb} - aN^2\frac{1}{V} \]\\
+
+
+%%%%%%%%%%
+One mole van der Waals gas undergoes reversible isothermal compression from volume $V_1$ to $V_2 < V_1$
+%%%%%%%%%
+
+\subsection{ I) use $P\qty(V, T N)$ to find expression for work done on gas. II) does the lower density 
+            limit require more or less work than the ideal gass? III) how so for the high density limit IV) why}%%%%%%%%%%
+
+\subsubsection{}
+For a gass, the work done is
+\[ W = -\int_{V_2}^{V_1} dV P \]
+where the negative is a result of work being done on the gas to compress it. 
+\[ W = \int_{v_2}^{V_1} dV \dv{F}{V}|_{T,N} \]
+ which is F from initial to finalvalues, excluding T and N dependencies and solves to
+\[ - \qty( NkT\ln( V - Nb) - aN^2\frac{1}{V} )_{V_2}^{V_1} \]
+\[ \qty( NkT\ln(\frac{V_2 - Nb}{V_1 - Nb}) - aN^2\qty(\frac{1}{V_2} - \frac{1}{V_1} ) ) \]
+
+
+\subsection{ Apply van der Waals gas to nitrogen ($N_2$). Critical parameters $P_c = 33.6atm$, 
+            $V_c = 0.089\frac{l}{mol}$, $T_c = 126 K$. Plot $P - V$ isotherms for $T = 77, 100, 110, 115, 120, 125 K$. }%%%%%%%%%%
+
+
+\subsection{ With construction of Maxwell equal area (as presented during lecture), determine liquid volume $V_l(T)$
+            and gas volume $V_g(T)$ for given temperature. Estimate by eye and find approximate position of temperature
+            where areas are equal. } % See lecture notes 13 for the area!%%%%%%%%%%
+
+
+\subsection{ Recall areas for a critical temperature. find $T_c$, i.e plot $V_l(T) - V_g(T)$ as a function of T. 
+            compare with theoretical temperature. Why do they differ? }%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% SECTION 2 %%%%%%%%%%%%%%%
+\section{ Partition function }
+Particle with 5 states, each with energy $\epsilon_i = -0.1, -0.05, 0, 0,05, 0.1 eV$ for $i\in \qty[1, 5]$. Thermal 
+equilibrium at room tepmerature T = 300K
+
+\subsection{ Partition function for particle $Z_1$ }%%%%%%%%%%
+
+
+\subsection{ $\Pr(\epsilon_i)$ for each i. }%%%%%%%%%%
+
+
+\subsection{ The reference point for energies is arbitrary. Reshuffle states so we start at 0. repeat 1. and 2. for
+            $\epsilon_i = 0, 0.05, 0.1, 0.15, 0.2$. What will remain and what will change? }%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% SECTION 3 %%%%%%%%%%
+\section{ Maxwell-Boltzmann distribution }
+Maxwell-Boltzmann distribution of speed $D(v)$ for nitrogen gas $N_2$ in 3 dimensions.
+
+\subsection{ find average speed  $\expval{v}$, root mean squared speed $v_{rms}$ and most probable speed $v_p(T)$ for $N_2$
+            molecule at temperatures $T = 300$ and $600 K$ (molar mass of $N_2$ is $M_m = 0.028 \frac{kg}{mol}$) }%%%%%%%%%%
+
+We can find on page 245, that if all velocities are allowed, then the integral of the average velocity can be expressed as
+\[ \ev{v(T)} = \sqrt{ \frac{ 8kT }{ \pi m } } \]
+Which takes the temperature and molecule mass into account. A heavy molecule could have the same energy with lower speed, and
+a higher general energy would lead to a larger average speed, with an expected greater spread of velocities. With the given molar 
+mass, 1 molecule should weig $\frac{1}{N_A}$ of that. Thus, 
+
+\[ m = \frac{ M_{N_2, mol} }{ N_A } = \frac{ 2.8 }{ 6 } \cdot 10^{-25} = 4.67\cdot 10^{-26} kg \]
+adding in a Boltzmann constant of $k_B = 1.38064\cdot 10^{-23}$ and a temperature $T = 3\cdot 10^{2}$. We get
+\[ \ev{v(T)} = \sqrt{ \frac{ 8 * 1.38065 * 3 }{ \pi * 4.67 }\cdot 10^{-23+2-(-26)} } 
+    = \sqrt{ 22.6 \cdot 10^6 } = 4.74 \cdot 10^3 \frac{m}{s} \]
+Or roughly \underline{$\ev{v(T)} = 4.74\frac{km}{s}$}. And for temperature $T = 6\cdot 10^2$, we get 
+\[ \ev{v(T)} = \sqrt{ \frac{ 8 * 1.38065 * 6 }{ \pi * 4.67 }\cdot 10^{-23+2-(-26)} } 
+    = \sqrt{ 45.17\cdot 10^6 } = 6.72 \cdot 10^3 \frac{m}{s} \]
+Or \underline{$\ev{v(T)} = 6.72 \frac{km}{s}$}
+
+And the most probable speed $v_p(T)$, or $v_{max}(T)$ as Schroeder calls it, p. 244\cite{ThermalSchroeder}, given by
+\[ v_p(T) = \sqrt{ \frac{ 2kT }{ m } } = \sqrt{ \frac{ 2\cdot 1.38064\cdot 3 }{ 4.67 } \cdot 10^{-23 + 2 + 26} } 
+    = \sqrt{ 17.74 \cdot 10^{6} } = 4.21\cdot 10^3 \frac{m}{s}\]
+Or \underline{$4.21\frac{km}{s}$}, slightly below the average, as expected. For $T = 6\cdot 10^2$, we have the same performance
+as previously, scaling the result by a factor $\sqrt{2}$, leaving us with \underline{$v_p(T) = 5.95 \frac{km}{s}$}.
+
+
+\subsection{ Plot Maxwell-Boltzmann distribution $D(v)$ for the 2 temperatures. in the same graph }%%%%%%%%%%
+
+
+\begin{figure}[hbtp]
+\includegraphics[scale=0.75]{E32MBdist.png}
+\caption{Maxwell Boltzmann disrtributions of velocities in the range $0$ to $2\frac{km}{s}$, where the amplitude was scaled as shown,
+    in order to avoid numerical inacuracies. We can see that for a similar amount of particles, an increase in energy will shift and widen
+    the graph, with the overall velocity increasing as per the kinetic energy, but also that more particles can be found with velocities above
+    and below the most likely.} 
+\label{fig:n10points}
+\end{figure}
+
+
+\subsection{ Room temperature $T = 300K$, what fraction of $N_2$ molecules at speeds less than $300\frac{m}{s}$ }%%%%%%%%%%
+
+To find the fraction of particles below $300\frac{m}{s}$, we need to take the integral of the distribution function from no velocity, to
+$300$, 
+%\[ \int_0^{300}dv\quad D(v) = \alpha \int_0^{300}dv\quad v^2e^{-\beta v^2} 
+%    \quad \leftarrow \quad \alpha = 4\pi \qty(\frac{m}{2\pi kT})^{3/2} \; \beta = \frac{m}{2kT} \]
+\[ \int_0^{300}dv\quad D(v) =  \int_0^{300}dv\quad \beta v^2e^{-\alpha v^2} 
+    \quad \leftarrow \quad \alpha = \frac{ m }{ 2kT } \; , \; \beta = \qty( \frac{ \alpha }{ \pi } )^{3/2} \] 
+
+
+\subsection{ Temperature of Earth's upper atmosphere aroun $T=1kK$. calculate probability of $N_2$ molecule with velocity 
+            greater than the earth's escape velocity of $11\frac{km}{s}$. Comment. (hint: calculate integral numerically) }%%%%%%%%%%
+
+
+\subsection{ repeat 4. for $H_2$ and $He$. Discuss results. ($M_{H_2, mol} = 0.002\frac{kg}{mol}$ and 
+            $M_{He, mol} = 0.004\frac{kg}{mol}$)  }%%%%%%%%%%
+
+
+\subsection{ consider the moon. calculate the probability of $N_2$ molecules to reach the moons escape velocity of
+            $2.4\frac{km}{s}$. Assume $T=1kK$ as above. Use to explain the moon's lack of atmosphere. }%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliography{\string~/Documents/bibliography/Bibliography}
+\end{document}
